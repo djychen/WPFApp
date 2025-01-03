@@ -1,0 +1,103 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="clr-namespace:PaymentDateValidator.UI"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        SizeToContent="Height"
+        Title="Payment Date Validator" Width ="500" MinWidth="500"
+        DataContext="{DynamicResource PaymentDateValidatorViewModel}">
+    <Window.Resources>
+        <ui:PaymentDateValidatorViewModel x:Key="PaymentDateValidatorViewModel" />
+        <ui:IsNotInRangeConverter x:Key="IsEqualOrGreaterThanConverter" />
+        <system:Int32 x:Key="MinDifference">21</system:Int32>
+        <Style x:Key="LabelElementStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,0,5,0" />
+        </Style>
+        <Style x:Key="DueDateElementStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,0,5,0" />
+        </Style>
+        <Style x:Key="CompianceElementStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Compliance, Converter={StaticResource IsEqualOrGreaterThanConverter}, ConverterParameter={StaticResource MinDifference}}" Value="True">
+                    <Setter Property="Background" Value="Salmon"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DataGrid"
+                  Margin="10"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  ItemsSource="{Binding PaymentDateCompliances}"
+                  AutoGenerateColumns="False"
+                  SelectionUnit="Cell"
+                  HeadersVisibility="Column"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=""
+                                    Width="45*"
+                                    IsReadOnly="True"
+                                    ElementStyle="{StaticResource LabelElementStyle}"
+                                    Binding="{Binding MonthLabel}" />
+                <DataGridTemplateColumn Header="Payment Date"
+                                        Width="55*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker Text="{Binding PaymentDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Margin="5,0,5,0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Due Date"
+                                    Width="55*"
+                                    IsReadOnly="True"
+                                    ElementStyle="{StaticResource DueDateElementStyle}"
+                                    Binding="{Binding DueDate, StringFormat=d, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Header="Compliance"
+                                    Width="45*"
+                                    IsReadOnly="True"
+                                    ElementStyle="{StaticResource CompianceElementStyle}"
+                                    Binding="{Binding Compliance}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content ="Common Due Date"
+               Grid.Row="1"
+               Grid.Column="0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+        <xctk:IntegerUpDown Text ="{Binding CommonDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               Grid.Row="1"
+               Grid.Column="1" 
+               Increment="1"
+               Minimum="1"
+               Maximum="31"
+               Margin="5,0,5,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center">
+        </xctk:IntegerUpDown>
+    </Grid>
+</Window>

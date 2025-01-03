@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "PresentationLayer\UI\UI.csproj", "{D12B29CB-7D93-4151-AA0D-242396770437}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{2153DA32-D5A9-47D0-82F7-FC3890F07C2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D12B29CB-7D93-4151-AA0D-242396770437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12B29CB-7D93-4151-AA0D-242396770437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12B29CB-7D93-4151-AA0D-242396770437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12B29CB-7D93-4151-AA0D-242396770437}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D12B29CB-7D93-4151-AA0D-242396770437} = {2153DA32-D5A9-47D0-82F7-FC3890F07C2E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {021C9E4E-C8AE-40F5-BCC8-D05055BC294A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://hgopatfsrv01:8080/tfs/gcappcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PresentationLayer\\UI\\UI.csproj
+		SccProjectTopLevelParentUniqueName1 = PaymentDateValidator.sln
+		SccProjectName1 = PresentationLayer/UI
+		SccLocalPath1 = PresentationLayer\\UI
+	EndGlobalSection
+EndGlobal
